@@ -38,6 +38,26 @@ install.bat --startup
 
 內部儲存識別沿用 `SnowVoicePure`，以相容先前安裝的設定與金鑰。
 
+## 用 Logi Options+ 設定滑鼠語音輸入
+
+使用支援 [Logi Options+](https://www.logi.com/en-us/software/logi-options-plus) 的 Logitech 滑鼠，可以把自訂按鍵指定為 SnowVoice 的語音快捷鍵，減少每次按鍵盤的操作。
+
+<img src="logi-options-plus-icon.png" alt="Logi Options+ 圖示" width="64">
+
+以下以 **MX Anywhere 3S** 側鍵為例：
+
+1. 先完成 SnowVoice 安裝與 API Key 設定，確認程式正在系統匣執行。
+2. 開啟 **Logi Options+**，選擇滑鼠，進入「**按鈕**」。
+3. 點選要使用的側鍵，將動作設為「**鍵盤快捷鍵**」。
+4. 輸入 **Ctrl + Alt + F12**。需要跨程式使用時，請在全域設定中指定，並檢查是否有應用程式專屬設定覆蓋它。
+5. 測試按住該滑鼠鍵時是否持續錄音，放開後是否開始轉錄；完成後按 **Ctrl + V** 貼上文字。若自行啟用 SnowVoice 的自動貼上，請維持原本的視窗與游標位置。
+
+![MX Anywhere 3S 在 Logi Options+ 中將側鍵設為 Ctrl + Alt + F12](logi-options-plus-shortcut.png)
+
+> **先確認長按行為：** SnowVoice Ver 1.2 使用「按住錄音、放開送出」。截圖示範的是快捷鍵指派，並不保證每種裝置或 Options+ 版本都會持續送出按下狀態。若按住滑鼠鍵卻立刻結束錄音，請改用鍵盤按住 **Ctrl + Alt + F12**；目前沒有「按一下開始、再按一下停止」模式。
+
+按鍵指派方式也可參考 [Logitech 官方設定教學](https://hub.sync.logitech.com/options/post/programming-buttons-and-keys-in-options-ntwM6VsAEKhHACY)。Logi Options+ 負責傳送快捷鍵；錄音與轉錄由 SnowVoice 處理。
+
 ## API、費用與資料
 
 - 需要自己的 [OpenAI API 帳號與額度](https://platform.openai.com/)。ChatGPT 訂閱不包含此工具的 API 費用。
