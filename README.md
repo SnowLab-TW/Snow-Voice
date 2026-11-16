@@ -2,6 +2,8 @@
 
 ## SnowVoice Ver 1.2 🎙️
 
+<img src="SnowVoice_logo.png" alt="SnowVoice 貓咪與麥克風標誌" width="320">
+
 Windows push-to-talk dictation for Traditional Chinese (Taiwan).
 
 按住 **Ctrl + Alt + F12** 錄音 → 放開後送至 OpenAI → 複製文字 → **Ctrl + V** 貼上。
