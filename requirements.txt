@@ -1,0 +1,9 @@
+openai>=1.40.0
+sounddevice>=0.4.7
+numpy>=1.26
+pyperclip>=1.8
+pynput>=1.7
+keyring>=25.0
+opencc-python-reimplemented>=0.1.7
+pystray>=0.19.5
+pillow>=10.0
