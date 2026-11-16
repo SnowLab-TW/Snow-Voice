@@ -9,7 +9,7 @@
 
 Windows push-to-talk dictation for Traditional Chinese (Taiwan).
 
-按住 **Ctrl + Alt + F12** 錄音 → 放開後送至 OpenAI → 複製文字 → **Ctrl + V** 貼上。
+按住 **Ctrl + Alt + F12** 錄音 → 放開後送至 OpenAI → 貼上。
 
 **Preview：尚待 Windows 實機驗收。** 目前提供 Python 原始碼與安裝器，沒有簽章 EXE。
 
