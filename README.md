@@ -1,5 +1,8 @@
 # Snow Voice
 
+**by Snow Lab**
+
+
 ## 🎙️SnowVoice Ver 1.2 
 
 <img src="SnowVoice_logo.png" alt="SnowVoice 貓咪與麥克風標誌" width="320">
