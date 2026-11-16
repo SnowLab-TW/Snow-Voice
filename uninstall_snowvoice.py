@@ -1,4 +1,4 @@
-"""Remove only Pure program files/startup. Settings and credentials remain."""
+"""Remove only application program files/startup. Settings and credentials remain."""
 import os
 from pathlib import Path
 import shutil
@@ -23,7 +23,7 @@ def main():
     # Abort if app hasn't exited; never remove files beneath a running app.
     try:
         with socket.create_connection(("127.0.0.1", 47854), timeout=0.5):
-            raise SystemExit("Close SnowVoice Pure manually and retry uninstall.")
+            raise SystemExit("Close SnowVoice Ver 1.2 manually and retry uninstall.")
     except OSError:
         pass
     try:
@@ -33,7 +33,7 @@ def main():
         pass
     if install_dir.exists():
         shutil.rmtree(install_dir)
-    print("Pure removed. Settings and Credential Manager key retained; see README for full removal.")
+    print("SnowVoice Ver 1.2 removed. Settings and Credential Manager key retained; see README for full removal.")
 
 
 if __name__ == "__main__":

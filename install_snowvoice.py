@@ -14,7 +14,7 @@ FILES = ("SnowVoice.pyw", "snowvoice_core.py", "snowvoice_control.py", "requirem
 
 def main():
     if sys.platform != "win32":
-        raise SystemExit("SnowVoice Pure requires Windows.")
+        raise SystemExit("SnowVoice Ver 1.2 requires Windows.")
     if sys.version_info < (3, 11):
         raise SystemExit("Install Python 3.11 or newer first.")
     import winreg
@@ -26,7 +26,7 @@ def main():
     import socket
     try:
         with socket.create_connection(("127.0.0.1", 47854), timeout=0.5):
-            raise SystemExit("Close SnowVoice Pure from its tray menu before reinstalling.")
+            raise SystemExit("Close SnowVoice Ver 1.2 from its tray menu before reinstalling.")
     except OSError:
         pass
     env_dir = INSTALL_DIR / ".venv"
@@ -43,7 +43,7 @@ def main():
             command = subprocess.list2cmdline([str(pythonw), str(INSTALL_DIR / "SnowVoice.pyw"), "--startup"])
             winreg.SetValueEx(key, "SnowVoicePure", 0, winreg.REG_SZ, command)
     subprocess.Popen([str(pythonw), str(INSTALL_DIR / "SnowVoice.pyw"), "--settings"], cwd=INSTALL_DIR)
-    print("Installed SnowVoice Pure. Startup enabled only when --startup was supplied.")
+    print("Installed SnowVoice Ver 1.2. Startup enabled only when --startup was supplied.")
 
 
 if __name__ == "__main__":

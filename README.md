@@ -1,4 +1,6 @@
-# SnowVoice Pure 🎙️
+# Snow Lab
+
+## SnowVoice Ver 1.2 🎙️
 
 Windows push-to-talk dictation for Traditional Chinese (Taiwan).
 
@@ -6,7 +8,7 @@ Windows push-to-talk dictation for Traditional Chinese (Taiwan).
 
 **Preview：尚待 Windows 實機驗收。** 目前提供 Python 原始碼與安裝器，沒有簽章 EXE。
 
-## Pure 版
+## Ver 1.2 功能
 
 - 空白詞庫，移除個人與公司預設詞彙、私人圖像及舊版資料移轉。
 - 保留正常句尾標點、系統匣、繁中轉換與自訂詞庫。
@@ -32,7 +34,9 @@ install.bat --startup
 ```
 
 用 `start_snowvoice.bat` 開啟設定。關閉設定只會隱藏，請從系統匣選「結束」關閉。
-更新前先關閉 Pure，再重新安裝。Pure 與原版**快捷鍵相同，請勿同時執行**。
+更新前先關閉此版本，再重新安裝。此版本與原版**快捷鍵相同，請勿同時執行**。
+
+內部儲存識別沿用 `SnowVoicePure`，以相容先前安裝的設定與金鑰。
 
 ## API、費用與資料
 
@@ -47,7 +51,7 @@ install.bat --startup
 
 ## 移除
 
-從**解壓縮的下載資料夾**執行 `uninstall_snowvoice.bat`。只移除 Pure 程式與開機項，保留設定及金鑰。
+從**解壓縮的下載資料夾**執行 `uninstall_snowvoice.bat`。只移除此版本程式與開機項，保留設定及金鑰。
 完整清除時，自行刪除 `%APPDATA%\SnowVoicePure`，並從 Windows「認證管理員」刪除 `SnowVoicePure_OpenAI` 對應項目。
 
 ## 開發與驗收

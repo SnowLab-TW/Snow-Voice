@@ -24,8 +24,8 @@ import pystray
 from PIL import Image, ImageTk, ImageDraw
 from snowvoice_core import valid_key_shape, format_transcript, error_message
 
-APP_NAME = "SnowVoice Pure"
-APP_VERSION = "1.3.0"
+APP_NAME = "SnowVoice"
+APP_VERSION = "1.2"
 KEYRING_SERVICE = "SnowVoicePure_OpenAI"
 KEYRING_USER = "default"
 
@@ -323,7 +323,7 @@ class SnowVoice:
             return
 
         self.transcribing = True
-        self.tray.title = "SnowVoice Pure — 轉錄中"
+        self.tray.title = "SnowVoice Ver 1.2 — 轉錄中"
         threading.Thread(
             target=self._transcribe_worker,
             daemon=True
@@ -383,12 +383,12 @@ class SnowVoice:
 
             text = format_transcript(text)
             pyperclip.copy(text)
-            self.tray.title = "SnowVoice Pure — 已複製，請貼上"
+            self.tray.title = "SnowVoice Ver 1.2 — 已複製，請貼上"
 
             if self.cfg.get("auto_paste", False):
                 time.sleep(0.10)
                 if ctypes.windll.user32.GetForegroundWindow() != self.paste_target:
-                    self.tray.title = "SnowVoice Pure — 已複製，請手動貼上"
+                    self.tray.title = "SnowVoice Ver 1.2 — 已複製，請手動貼上"
                     return
                 kb = keyboard.Controller()
                 with kb.pressed(keyboard.Key.ctrl):
@@ -418,7 +418,7 @@ class SnowVoice:
         self.root.deiconify()
         self.root.lift()
         self.root.focus_force()
-        self.root.title(f"SnowVoice v{APP_VERSION}")
+        self.root.title(f"SnowVoice Ver {APP_VERSION}")
         self.root.geometry("700x620")
         self.root.minsize(650, 570)
 
@@ -442,7 +442,7 @@ class SnowVoice:
 
         ttk.Label(
             title_box,
-            text=f"SnowVoice v{APP_VERSION}",
+            text=f"SnowVoice Ver {APP_VERSION}",
             font=("Segoe UI", 19, "bold")
         ).pack(anchor="w", pady=(8, 1))
 
@@ -618,7 +618,7 @@ class SnowVoice:
 
     def quit_app(self):
         if self.transcribing:
-            messagebox.showinfo("SnowVoice Pure", "正在轉錄，請稍候完成後再結束。")
+            messagebox.showinfo("SnowVoice Ver 1.2", "正在轉錄，請稍候完成後再結束。")
             return
         try:
             if self.keyboard_listener:
@@ -683,7 +683,7 @@ def main():
         send_existing_instance("SHOW" if show_settings else "SHOW")
         return
 
-    log(f"SnowVoice v{APP_VERSION} starting")
+    log(f"SnowVoice Ver {APP_VERSION} starting")
     try:
         SnowVoice(
             ipc_socket=ipc_socket,
