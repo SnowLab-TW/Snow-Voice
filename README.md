@@ -1,6 +1,6 @@
 # Snow Voice
 
-**by Snow Lab**
+**Powered by Snow Lab**
 
 
 ## 🎙️SnowVoice Ver 1.2 
