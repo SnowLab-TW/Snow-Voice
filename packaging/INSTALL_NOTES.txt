@@ -1,0 +1,20 @@
+Snow Voice Ver 1.2 — Powered by Snow Lab
+
+Windows 10/11, 64-bit (x64). Python is bundled; no separate Python install is needed.
+
+You need your own OpenAI API Secret Key and API credits. Audio and custom vocabulary
+are sent to OpenAI for transcription. ChatGPT subscriptions do not cover API usage.
+No API key, personal vocabulary or recording is included in this installer.
+
+Hold Ctrl + Alt + F12 to record; release to transcribe; press Ctrl + V to paste.
+Automatic paste and start-at-login are optional and disabled by default.
+
+Quit any running Snow Voice from its tray menu before installing or uninstalling.
+If you installed the Python edition before, uninstall it first to remove its old
+startup entry. Your saved settings and key are retained and shared by these editions.
+
+This is an unsigned preview build. Windows SmartScreen may display a warning.
+Microphone, global hotkey and live transcription still need testing on a real PC.
+
+Uninstall via Windows Settings > Apps. Uninstall keeps your settings and API key.
+Guide: https://github.com/eericni/Snow-Voice#readme
