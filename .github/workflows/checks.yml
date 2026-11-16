@@ -1,0 +1,14 @@
+name: Checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  offline-tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m compileall -q SnowVoice.pyw snowvoice_core.py install_snowvoice.py uninstall_snowvoice.py snowvoice_control.py
+      - run: python -m unittest discover -s tests -v
