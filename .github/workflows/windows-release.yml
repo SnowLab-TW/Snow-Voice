@@ -1,0 +1,62 @@
+name: Windows EXE release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packaging/**'
+      - '.github/workflows/windows-release.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: windows-release-v1.2
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          architecture: x64
+      - name: Build Windows installer
+        shell: pwsh
+        run: ./packaging/build_windows.ps1
+      - name: Test frozen app, install and uninstall
+        shell: pwsh
+        run: ./packaging/test_installer.ps1
+      - name: Keep smoke-test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-test-reports
+          path: test-results/
+          if-no-files-found: ignore
+      - name: Keep installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: SnowVoice-Windows-v1.2-x64
+          path: release/*
+          if-no-files-found: error
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: SnowVoice-Windows-v1.2-x64
+          path: release
+      - name: Publish tested preview installer
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create v1.2 release/*
+          --target "$GITHUB_SHA"
+          --title "Snow Voice Ver 1.2 · Windows x64 Preview"
+          --notes-file packaging/RELEASE_NOTES.md
+          --prerelease
