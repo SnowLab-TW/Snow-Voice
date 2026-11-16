@@ -9,7 +9,7 @@ import venv
 BASE = Path(__file__).resolve().parent
 INSTALL_DIR = Path(os.environ.get("LOCALAPPDATA", Path.home())) / "SnowVoicePure" / "App"
 RUN_KEY = r"Software\Microsoft\Windows\CurrentVersion\Run"
-FILES = ("SnowVoice.pyw", "snowvoice_core.py", "snowvoice_control.py", "requirements.txt")
+FILES = ("SnowVoice.pyw", "snowvoice_core.py", "snowvoice_control.py", "requirements.txt", "SnowVoice_logo.png")
 
 
 def main():

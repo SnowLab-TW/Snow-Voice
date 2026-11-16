@@ -12,5 +12,8 @@ venv/
 config.json
 build/
 dist/
+release/
+test-results/
+packaging/SnowVoice.ico
 *.egg-info/
 .DS_Store

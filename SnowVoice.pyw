@@ -100,6 +100,9 @@ def save_config(cfg):
 
 
 def load_brand_image(size):
+    if LOGO_PATH.is_file():
+        with Image.open(LOGO_PATH) as logo:
+            return logo.convert("RGBA").resize((size, size), Image.Resampling.LANCZOS)
     # Code-drawn neutral icon; no personal photos or image metadata.
     img = Image.new("RGBA", (128, 128), "#102238")
     draw = ImageDraw.Draw(img)
@@ -665,6 +668,12 @@ def send_existing_instance(command):
 
 
 def main():
+    # Offline packaging check: no credentials, microphone capture or API requests.
+    if "--self-test" in sys.argv:
+        from snowvoice_selftest import run_self_test
+        index = sys.argv.index("--self-test")
+        raise SystemExit(run_self_test(Path(sys.argv[index + 1])))
+
     show_settings = "--settings" in sys.argv
     startup_mode = "--startup" in sys.argv
 
@@ -683,6 +692,9 @@ def main():
         send_existing_instance("SHOW" if show_settings else "SHOW")
         return
 
+    # Inno Setup checks this mutex before replacing/removing a running app.
+    ctypes.windll.kernel32.CreateMutexW.restype = ctypes.c_void_p
+    mutex = ctypes.windll.kernel32.CreateMutexW(None, False, "SnowVoice_Ver12")
     log(f"SnowVoice Ver {APP_VERSION} starting")
     try:
         SnowVoice(
@@ -692,6 +704,9 @@ def main():
     except Exception:
         log("Fatal application error")
         raise
+    finally:
+        if mutex:
+            ctypes.windll.kernel32.CloseHandle(ctypes.c_void_p(mutex))
 
 
 if __name__ == "__main__":
