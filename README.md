@@ -1,4 +1,4 @@
-# Snow Lab
+# Snow Voice
 
 ## 🎙️SnowVoice Ver 1.2 
 
