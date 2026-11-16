@@ -9,19 +9,38 @@
 
 Windows push-to-talk dictation for Traditional Chinese (Taiwan).
 
-按住 **Ctrl + Alt + F12** 錄音 → 放開後送至 OpenAI → 貼上。
+按住 **Ctrl + Alt + F12** 錄音 → 放開後送至 OpenAI → 複製文字 → **Ctrl + V** 貼上。
 
-**Preview：尚待 Windows 實機驗收。** 目前提供 Python 原始碼與安裝器，沒有簽章 EXE。
+## ⬇️ 下載 Windows 安裝包
+
+**[下載 Snow Voice Ver 1.2 安裝包（Windows x64）](https://github.com/eericni/Snow-Voice/releases/download/v1.2/SnowVoice-Setup-v1.2-x64.exe)**
+
+[版本說明與校驗碼](https://github.com/eericni/Snow-Voice/releases/tag/v1.2) · **不需要另外安裝 Python。**
+
+**Preview：Windows 自動建置與安裝檢查已通過，麥克風與實際轉錄仍待實機驗收。** 安裝包尚未數位簽章，Windows 可能顯示 SmartScreen 提醒。請確認從本專案 Releases 下載。
+
+> GitHub 的 **Code → Download ZIP** 或 **Source code (zip)** 是原始碼；一般使用者請下載上方的 **EXE 安裝包**。
 
 ## Ver 1.2 功能
 
-- 空白詞庫，移除個人與公司預設詞彙、私人圖像及舊版資料移轉。
+- 空白詞庫，不附帶個人與公司預設詞彙、金鑰或錄音；使用 Snow Voice 貓咪品牌圖示。
 - 保留正常句尾標點、系統匣、繁中轉換與自訂詞庫。
 - 獨立設定、金鑰、安裝目錄與開機啟動項。
 - 預設只複製；自動貼上須自行啟用，前景視窗改變時跳過貼上。
 - 每次錄音最長約 120 秒，API timeout 設為 60 秒，不自動重試。
 
-## 安裝（Windows 10 / 11）
+## 安裝 EXE（Windows 10 / 11 x64）
+
+1. 下載上方的 **`SnowVoice-Setup-v1.2-x64.exe`**。
+2. 雙擊安裝，依畫面按 **Next → Install → Finish**；不需要管理員權限，也不需要 Python。
+3. 從 Windows 開始功能表開啟 **Snow Voice**，設定自己的 OpenAI Secret Key。
+4. 在 Windows 隱私設定允許桌面應用程式使用麥克風。
+5. 按住 **Ctrl + Alt + F12** 說話，放開後等待轉錄，再按 **Ctrl + V** 貼上。
+
+安裝時可選桌面捷徑及開機啟動，預設都不勾選。程式安裝在 `%LOCALAPPDATA%\Programs\SnowVoice`。
+更新或移除前，先從系統匣右鍵選單選「結束 SnowVoice」。若之前安裝過 Python 版，請先結束並移除舊版，避免舊開機項同時啟動；設定與金鑰會保留。
+
+### Python 原始碼安裝（開發者選用）
 
 1. 安裝 [Python](https://www.python.org/downloads/windows/) 3.11 以上，包含 Launcher、pip、Tkinter。
 2. 下載儲存庫 ZIP 並**完整解壓縮**。
@@ -53,7 +72,7 @@ install.bat --startup
 
 <img src="guide-1-tray.png" alt="步驟1：展開系統匣，找到黃色圈選的 Snow Voice 圖示" width="720">
 
-找不到圖示時，先執行下載資料夾內的 `start_snowvoice.bat`。關閉設定視窗只會隱藏程式；要完全離開，請選系統匣選單中的「結束 SnowVoice」。
+找不到圖示時，從 **Windows 開始功能表 → Snow Voice** 開啟；使用 Python 原始碼版則執行下載資料夾內的 `start_snowvoice.bat`。關閉設定視窗只會隱藏程式；要完全離開，請選系統匣選單中的「結束 SnowVoice」。
 
 ### 2. 開啟設定
 
@@ -131,7 +150,11 @@ install.bat --startup
 
 ## 移除
 
-從**解壓縮的下載資料夾**執行 `uninstall_snowvoice.bat`。只移除此版本程式與開機項，保留設定及金鑰。
+**EXE 版：** 在 Windows「設定 → 應用程式」找到 **Snow Voice** 並解除安裝，或使用開始功能表的 **Uninstall Snow Voice**。
+
+**Python 原始碼版：** 從解壓縮資料夾執行 `uninstall_snowvoice.bat`。
+
+兩種方式都保留設定及金鑰。
 完整清除時，自行刪除 `%APPDATA%\SnowVoicePure`，並從 Windows「認證管理員」刪除 `SnowVoicePure_OpenAI` 對應項目。
 
 ## 開發與驗收
@@ -142,7 +165,16 @@ python -m compileall -q .
 ```
 
 離線測試不需要金鑰，不呼叫 API。GitHub Actions 在 Windows 執行語法和離線測試。
-依賴指定最低版本，尚未提供鎖定檔，實際安裝版本可能隨 PyPI 更新。
+Windows EXE release 流程使用 PyInstaller 與 Inno Setup，檢查打包相依套件、實際設定視窗、靜默安裝、捷徑、預設不自動啟動與靜默移除，通過後才發布預覽安裝包。
+
+Windows 開發環境已安裝 Inno Setup 6 時，可在儲存庫根目錄執行：
+
+```powershell
+./packaging/build_windows.ps1
+./packaging/test_installer.ps1
+```
+
+EXE 已包含建置時的依賴，使用者安裝時不會再從 PyPI 抓取套件；實際版本列在 release 的 `dependency-manifest.json`，安裝目錄 `THIRD_PARTY` 保留套件提供的授權文件。建置依賴尚未完全鎖定，後續重新建置可能採用較新的依賴。
 
 待 Windows 實機確認：
 

@@ -9,4 +9,9 @@
 - Bound recording duration; configure timeout and disable retries.
 - Add virtual-environment installer, opt-in startup, offline tests and Windows checklist.
 
+- Add a bundled Windows x64 EXE installer, optional shortcuts/startup and Windows uninstaller.
+- Use the public Snow Voice cat logo in settings, tray and installer.
+- Add frozen-dependency/settings-window smoke checks, silent install/uninstall checks,
+  dependency notices, build manifest, SHA-256 checksum and preview release workflow.
+
 Windows hardware and live API testing remain pending.
