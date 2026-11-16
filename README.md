@@ -9,13 +9,15 @@
 
 Windows push-to-talk dictation for Traditional Chinese (Taiwan).
 
-按住 **Ctrl + Alt + F12** 錄音 → 放開後送至 API → 自動語音轉文字。
+按住 **Ctrl + Alt + F12** 錄音 → 放開後轉成文字 → **自動貼上到游標位置**，不用再按 Ctrl + V。
+
+第一次使用時，請在設定中勾選「**自動貼上**」並按「**儲存設定**」，即可使用以上流程。
 
 ## ⬇️ 下載 Windows 安裝包
 
-**[下載 Snow Voice Ver 1.2 安裝包（Windows x64）](https://github.com/eericni/Snow-Voice/releases/download/v1.2/SnowVoice-Setup-v1.2-x64.exe)**
+**[下載 Snow Voice Ver 1.2 安裝包（Windows x64）](https://github.com/SnowLab-TW/Snow-Voice/releases/download/v1.2/SnowVoice-Setup-v1.2-x64.exe)**
 
-[版本說明與校驗碼](https://github.com/eericni/Snow-Voice/releases/tag/v1.2) · **不需要另外安裝 Python。**
+[版本說明與校驗碼](https://github.com/SnowLab-TW/Snow-Voice/releases/tag/v1.2) · **不需要另外安裝 Python。**
 
 **Preview：Windows 自動建置與安裝檢查已通過，麥克風與實際轉錄仍待實機驗收。** 安裝包尚未數位簽章，Windows 可能顯示 SmartScreen 提醒。請確認從本專案 Releases 下載。
 
@@ -26,16 +28,16 @@ Windows push-to-talk dictation for Traditional Chinese (Taiwan).
 - 空白詞庫，不附帶個人與公司預設詞彙、金鑰或錄音；使用 Snow Voice 貓咪品牌圖示。
 - 保留正常句尾標點、系統匣、繁中轉換與自訂詞庫。
 - 獨立設定、金鑰、安裝目錄與開機啟動項。
-- 預設只複製；自動貼上須自行啟用，前景視窗改變時跳過貼上。
+- 支援自動貼上到目前游標位置，不必再按 Ctrl + V；首次使用請勾選「自動貼上」並儲存設定。等待期間請維持原本視窗與游標位置。
 - 每次錄音最長約 120 秒，API timeout 設為 60 秒，不自動重試。
 
 ## 安裝 EXE（Windows 10 / 11 x64）
 
 1. 下載上方的 **`SnowVoice-Setup-v1.2-x64.exe`**。
 2. 雙擊安裝，依畫面按 **Next → Install → Finish**；不需要管理員權限，也不需要 Python。
-3. 從 Windows 開始功能表開啟 **Snow Voice**，設定自己的 OpenAI Secret Key。
+3. 從 Windows 開始功能表開啟 **Snow Voice**，設定自己的 OpenAI Secret Key，勾選「**自動貼上**」並按「**儲存設定**」。
 4. 在 Windows 隱私設定允許桌面應用程式使用麥克風。
-5. 按住 **Ctrl + Alt + F12** 說話，放開後等待轉錄，再按 **Ctrl + V** 貼上。
+5. 點選文字輸入位置，按住 **Ctrl + Alt + F12** 說話；放開後等待轉錄，文字會**自動貼上**，不用再按 Ctrl + V。
 
 安裝時可選桌面捷徑及開機啟動，預設都不勾選。程式安裝在 `%LOCALAPPDATA%\Programs\SnowVoice`。
 更新或移除前，先從系統匣右鍵選單選「結束 SnowVoice」。若之前安裝過 Python 版，請先結束並移除舊版，避免舊開機項同時啟動；設定與金鑰會保留。
@@ -47,7 +49,7 @@ Windows push-to-talk dictation for Traditional Chinese (Taiwan).
 3. 雙擊 `install.bat`。需要網路，依賴從 PyPI 安裝。
 4. 在設定視窗填入自己的 OpenAI **Secret Key**（`sk-` 開頭），不要填 `key_` Tracking ID。
 5. 在 Windows 隱私設定允許桌面應用程式使用麥克風。
-6. 按住快捷鍵說話，放開後稍候，完成後手動貼上。
+6. 在設定中勾選「**自動貼上**」並儲存設定；點選文字輸入位置，按住快捷鍵說話，放開後等待文字自動貼上。
 
 不需要管理員權限。程式與獨立虛擬環境位於 `%LOCALAPPDATA%\SnowVoicePure\App`。
 
@@ -97,12 +99,12 @@ install.bat --startup
 | 模型 | `gpt-transcribe`；需有該模型的使用權限 |
 | 語言 | `zh` |
 | 強制轉換成台灣繁體中文 | 勾選 |
-| 轉錄完成後自動貼上 | 初次使用先不勾選，確認流程後再自行啟用 |
+| 自動貼上 | **勾選**，再按「儲存設定」；完成轉錄後自動輸入，不必按 Ctrl + V |
 | 關鍵詞／專有名詞 | 可留白；需要時輸入自己常用的詞彙 |
 
 ### 5. 儲存設定
 
-按左下角「**儲存設定**」。API Key 有自己的儲存按鈕；此處儲存的是模型、語言與其他偏好。
+確認已勾選「**自動貼上**」，再按左下角「**儲存設定**」。API Key 有自己的儲存按鈕；此處儲存的是模型、語言與其他偏好。
 
 ### 6. 隱藏到系統匣
 
@@ -112,8 +114,10 @@ install.bat --startup
 
 1. 開啟記事本等可輸入文字的程式，點選輸入位置。
 2. **按住 Ctrl + Alt + F12** 說話；放開後開始轉錄。
-3. 系統會自動貼上文字。
-4. 如果有啟用自動貼上，等待期間請維持原本視窗與游標位置。
+3. 轉錄完成後，文字會**自動貼上到游標位置**，不用按 Ctrl + V。
+4. 等待期間請維持原本視窗與游標位置。
+
+> 若沒有自動貼上，先確認設定中的「**自動貼上**」已勾選且已儲存。公開版首次安裝預設只複製文字；未啟用自動貼上，或轉錄期間切換了前景視窗時，可按 Ctrl + V 手動貼上。
 
 也能透過下方 Logi Options+ 教學將快捷鍵指定給滑鼠側鍵。若錄不到聲音，先確認 Windows 允許桌面應用程式使用麥克風。
 
@@ -129,7 +133,7 @@ install.bat --startup
 2. 開啟 **Logi Options+**，選擇滑鼠，進入「**按鈕**」。
 3. 點選要使用的側鍵，將動作設為「**鍵盤快捷鍵**」。
 4. 輸入 **Ctrl + Alt + F12**。需要跨程式使用時，請在全域設定中指定，並檢查是否有應用程式專屬設定覆蓋它。
-5. 測試按住該滑鼠鍵時是否持續錄音，放開後是否開始轉錄；完成後按 **Ctrl + V** 貼上文字。若自行啟用 SnowVoice 的自動貼上，請維持原本的視窗與游標位置。
+5. 在 SnowVoice 設定中勾選「**自動貼上**」並儲存。點選文字輸入位置，按住該滑鼠鍵說話、放開後轉錄，完成後文字會**自動貼上**；等待期間請維持原本視窗與游標位置。
 
 ![MX Anywhere 3S 在 Logi Options+ 中將側鍵設為 Ctrl + Alt + F12](logi-options-plus-shortcut.png)
 
@@ -184,8 +188,9 @@ EXE 已包含建置時的依賴，使用者安裝時不會再從 PyPI 抓取套�
 - [ ] 手動貼上、自動貼上、切換視窗與系統管理員視窗。
 - [ ] 開機啟動與解除安裝。
 
-自動貼上只檢查前景視窗，不能確認同一視窗內的游標，也不能完全排除檢查後切換視窗的競態；手動貼上是預設。
+自動貼上只檢查前景視窗，不能確認同一視窗內的游標，也不能完全排除檢查後切換視窗的競態；等待期間請維持原本視窗與游標位置。公開版首次安裝需自行勾選「自動貼上」並儲存設定。
 
 ## 授權
 
 目前尚未指定開源授權。公開可見不代表允許自由再散布；確定授權後再加入 LICENSE。
+
