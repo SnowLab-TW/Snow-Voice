@@ -43,6 +43,61 @@ install.bat --startup
 
 內部儲存識別沿用 `SnowVoicePure`，以相容先前安裝的設定與金鑰。
 
+## 第一次使用：圖文操作教學
+
+先完成上方安裝。以下圖片為標註示意，圖示與文字可能因版本略有不同；API Key 與個人詞庫不會隨程式提供。
+
+### 1. 找到 Snow Voice
+
+點 Windows 右下角的 **向上箭頭（隱藏的圖示）**，找到 Snow Voice 圖示。下圖黃色圈選的是 Snow Voice；不同版本也可能顯示麥克風圖示。
+
+<img src="guide-1-tray.png" alt="步驟1：展開系統匣，找到黃色圈選的 Snow Voice 圖示" width="720">
+
+找不到圖示時，先執行下載資料夾內的 `start_snowvoice.bat`。關閉設定視窗只會隱藏程式；要完全離開，請選系統匣選單中的「結束 SnowVoice」。
+
+### 2. 開啟設定
+
+在 Snow Voice 圖示上按 **滑鼠右鍵 → 開啟設定**。
+
+<img src="guide-2-menu.png" alt="步驟2：右鍵點 Snow Voice，選擇開啟設定" width="720">
+
+### 3. 設定自己的 API Key
+
+點「**設定 / 更新 API Key**」，貼入自己的 OpenAI **Secret Key**，再按該視窗的「**儲存 API Key**」。可到 [OpenAI API Keys](https://platform.openai.com/api-keys) 建立或管理金鑰。
+
+- 使用完整 `sk-` 開頭的 Secret Key，**不要填 `key_` Tracking ID**。
+- 金鑰不要放到 GitHub、聊天室或截圖裡。每位使用者各自設定，並負擔自己的 API 用量。
+- **已儲存不等於已驗證有效**；第一次實際轉錄成功後，才確認整條流程可以運作。
+
+<img src="guide-3-settings.png" alt="步驟3至6：設定 API Key、確認模型與語言、儲存設定並隱藏到系統匣；詞庫已清空" width="800">
+
+### 4. 確認語音設定
+
+| 設定 | 建議起始值／用途 |
+| --- | --- |
+| 模型 | `gpt-transcribe`；需有該模型的使用權限 |
+| 語言 | `zh` |
+| 強制轉換成台灣繁體中文 | 勾選 |
+| 轉錄完成後自動貼上 | 初次使用先不勾選，確認流程後再自行啟用 |
+| 關鍵詞／專有名詞 | 可留白；需要時輸入自己常用的詞彙 |
+
+### 5. 儲存設定
+
+按左下角「**儲存設定**」。API Key 有自己的儲存按鈕；此處儲存的是模型、語言與其他偏好。
+
+### 6. 隱藏到系統匣
+
+按右下角「**隱藏到系統匣**」，Snow Voice 會繼續在背景執行。
+
+### 7. 開始語音輸入
+
+1. 開啟記事本等可輸入文字的程式，點選輸入位置。
+2. **按住 Ctrl + Alt + F12** 說話；放開後開始轉錄。
+3. 等系統匣提示文字已複製，再按 **Ctrl + V** 貼上。
+4. 如果有啟用自動貼上，等待期間請維持原本視窗與游標位置。
+
+也能透過下方 Logi Options+ 教學將快捷鍵指定給滑鼠側鍵。若錄不到聲音，先確認 Windows 允許桌面應用程式使用麥克風。
+
 ## 用 Logi Options+ 設定滑鼠語音輸入
 
 使用支援 [Logi Options+](https://www.logi.com/en-us/software/logi-options-plus) 的 Logitech 滑鼠，可以把自訂按鍵指定為 SnowVoice 的語音快捷鍵，減少每次按鍵盤的操作。
