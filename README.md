@@ -9,7 +9,7 @@
 
 Windows push-to-talk dictation for Traditional Chinese (Taiwan).
 
-按住 **Ctrl + Alt + F12** 錄音 → 放開後送至 API → 自動貼上。
+按住 **Ctrl + Alt + F12** 錄音 → 放開後送至 API → 自動語音轉文字。
 
 ## ⬇️ 下載 Windows 安裝包
 
